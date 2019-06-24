@@ -44,7 +44,38 @@ describe('growUp', () => {
         pet.fitness = 8;
         pet.walk();
         expect(pet.fitness).toEqual(MAXIMUM_FITNESS);
-
     });
+    describe('feed', () => {
+        it('decreases hunger level by 3', () => {
+        const pet = new Pet('Fido');
+        const MINIMUM_HUNGER_LEVEL = 0;
+        pet.hungerLevel = 0;
+        pet.feed();
+        expect(pet.hungerLevel).toEqual(MINIMUM_HUNGER_LEVEL);
+        });
+    });
+    describe('check up', () => {
+        it('checks if Fido needs a walk', () => {
+            const pet = new Pet('Fido');
+            pet.fitness = 2;
+            expect(pet.checkUp()).toEqual('I need a walk');     
+        });
+        it('checks if Fido is hungry', () => {
+            const pet = new Pet('Fido');
+            pet.hunger = 6;
+            expect(pet.checkUp()).toEqual('I am hungry');
+        })
+        it('checks if Fido needs a walk and is hungry', () => {
+            const pet = new Pet('Fido');
+            pet.hunger = 6; 
+            pet.fitness = 2;
+            expect(pet.checkUp()).toEqual('I am hungry AND I need a walk');
+         });
+         it('checks if Fido is doing great', () => {
+            const pet = new Pet('Fido');
+            pet.hunger = 4;
+            pet.fitness = 8;
+            expect(pet.checkUp()).toEqual('I feel great!');
+        })
   });
-
+});
