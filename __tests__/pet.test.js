@@ -52,7 +52,8 @@ describe('growUp', () => {
         pet.hungerLevel = 0;
         pet.feed();
         expect(pet.hungerLevel).toEqual(MINIMUM_HUNGER_LEVEL);
-        });
+     });
+    });
     });
     describe('check up', () => {
         it('checks if Fido needs a walk', () => {
@@ -77,5 +78,11 @@ describe('growUp', () => {
             pet.fitness = 8;
             expect(pet.checkUp()).toEqual('I feel great!');
         })
-  });
-});
+     });
+    describe('isAlive', () => {
+        it('checks if Fido\'s fitness is less than 0', () => {
+            const pet = new Pet('Fido');
+            pet.fitness = -1;
+            expect(pet.isAlive()).toEqual(false);
+        });
+    });
