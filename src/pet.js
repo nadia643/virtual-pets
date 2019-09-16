@@ -19,6 +19,9 @@ Pet.prototype.walk = function() {
     }
 };
 Pet.prototype.feed = function() {
+    if (!this.isAlive()) {
+        throw new Error('Your pet is no longer alive :(');
+      }
     if((this.feed -3) >= MINIMUM_HUNGER_LEVEL) {
         this.feed -=3;
     } else{
@@ -42,6 +45,10 @@ Pet.prototype.checkUp = function() {
 Pet.prototype.isAlive = function () {
     if (this.fitness <= 0) {
         return false;
+    }    
+    if (this.age >= 30) { /*want to check here if age >=30 makes it dead*/
+        return false;
     }
-}
+    return true;
+    }
 module.exports = Pet;

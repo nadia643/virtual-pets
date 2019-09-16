@@ -50,9 +50,17 @@ describe('growUp', () => {
         const pet = new Pet('Fido');
         const MINIMUM_HUNGER_LEVEL = 0;
         pet.hungerLevel = 0;
+        pet.fitness = 7;
         pet.feed();
         expect(pet.hungerLevel).toEqual(MINIMUM_HUNGER_LEVEL);
      });
+     it('throws an error if the pet is not alive', () => {
+        const pet = new Pet('Fido');
+  
+        pet.age = 30;
+  
+        expect(() => pet.feed()).toThrow('Your pet is no longer alive :(');
+      });
     });
     });
     describe('check up', () => {
